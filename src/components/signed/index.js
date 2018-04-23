@@ -2,14 +2,17 @@ import React from 'react';
 import Modal from 'react-modal';
 import fetch from 'cross-fetch'
 import './index.css';
-
+import firebase from '../../firebase/firebase';
 
 class Signed extends React.Component {
     constructor(props) {
     super(props);
-    this.state = {user: [], email:[], selected:""};
+    this.state = {user: [], email:[], selected:"", fire: "",headAdmin: "",
+                  owner:"", id:"",  modalIsOpen: false, username:""};
     this.onDelete=this.onDelete.bind(this)
     this.onAdd=this.onAdd.bind(this)
+    this.openModal=this.openModal.bind(this)
+    this.closeModal=this.closeModal.bind(this)
 
   }
 
@@ -49,10 +52,16 @@ onAdd(e) {
 
 
 
-componentDidUpdate() {
-    console.log(this.state.user)
-    }
+componentWillMount() {
+
+     }
 componentDidMount() {
+
+
+
+
+
+
     fetch('https://jsonplaceholder.typicode.com/todos')
     .then(
         response => response.json()
@@ -69,11 +78,53 @@ componentDidMount() {
         error => console.error(error)
     );
 
-    const json=localStorage.getItem('email');
-    console.log(json);
-    const email=JSON.parse(json)
-    this.setState({ email:email });
-    }
+
+
+
+  const database = firebase.database();
+
+
+database.ref('currentUser').on('value', (snapshot) => {
+// const val = snapshot.val();
+const arrayUsers = [];
+snapshot.forEach((childSnapshot) => {
+   arrayUsers.push({
+     id: childSnapshot.key,
+     ...childSnapshot.val()
+   });
+ })
+console.log(arrayUsers, "arraz")
+
+const xnumber=localStorage.getItem('xnum');
+let pire=JSON.parse(xnumber);
+console.log(pire)
+this.setState({ fire: pire });
+console.log(this.state.fire);
+
+let results = arrayUsers.find(function (obj) { return (obj.x === pire); });
+console.log(results)
+if (results) {
+ this.setState({ id:results.id, headAdmin:results.headAdmin,owner:results.owner,
+                 email:results.email, username:results.username });
+ console.log(this.state.id,'to je to')
+}
+})
+}
+
+componentWillUnmount(){
+  const database = firebase.database();
+  database.ref(`currentUser/${this.state.id}`).set({ });
+
+}
+
+
+openModal() {
+  this.setState({ modalIsOpen:true });
+}
+ closeModal() {
+   this.setState({ modalIsOpen:false });
+ }
+
 
 
 
@@ -83,14 +134,29 @@ render() {
     for(let i = 0; i < this.state.user.length; i++){
                     const us = this.state.user[i];
                     const tr = <TableRow key={us.id} id={i+1} title={us.title}
-                     completed={JSON.stringify(us.completed)} email={this.state.email}  />
+                     completed={JSON.stringify(us.completed)} email={this.state.email} headAdmin={this.state.headAdmin} />
                     rows.push(tr);
                 }
 
     return(<div id="users">
-       <p>Welcome: {this.state.email}</p>
+       <p>Welcome: {this.state.username}, ({this.state.email})</p>
+       {this.state.owner &&
+      <button onClick={this.openModal}>Edit admin list</button>}
+              <Modal
+              isOpen={this.state.modalIsOpen}
+              ariaHideApp={false}
+              contentLabel="Example Modal">
+                <div className="Center">
 
-        {this.state.email==="mixy80@gmail.com" &&
+                  <h1>edit admin list</h1>
+
+                    <div className="Center">
+              <button onClick={this.closeModal}>close list</button>
+               <Adminlist  registered={this.state.registered}/>
+               </div>
+                </div>
+             </Modal>
+        {this.state.headAdmin &&
         <div className="scroll">
        <form onSubmit={this.onDelete} >
        <input type="number" placeholder="id" min="1" max={this.state.user.length} name="num"/>
@@ -112,7 +178,7 @@ render() {
                                 <th>id</th>
                                 <th>task</th>
                                 <th>completed</th>
-                                {this.state.email==="mixy80@gmail.com" &&
+                                {this.state.headAdmin &&
                                  <th>click on button to edit task</th>
                                 }
                             </tr>
@@ -218,7 +284,7 @@ render() {
 
          >{JSON.stringify(this.state.completed)}</td>
 
-                     {this.props.email==="mixy80@gmail.com" &&
+                     {this.props.headAdmin &&
 
                     <td style={{backgroundColor: 'white'}}><button onClick={this.onEdit} >Edit</button></td>}
 
@@ -257,3 +323,51 @@ render() {
 
 
 }
+
+
+
+class Adminlist extends React.Component {
+
+  render(){
+    let rows=[];
+    let reg=this.props.registered;
+    console.log(reg)
+    for (const id in reg) {
+      console.log(id)
+
+      const tr=<User key={id} id={id}/>
+        rows.push(tr);
+      }
+  console.log(rows)
+
+return(
+<div>
+  <table >
+     <thead>
+         <tr>
+           <th>id</th>
+             <th>email</th>
+         </tr>
+     </thead>
+     <tbody>
+         {rows}
+     </tbody>
+ </table>
+</div>)
+
+
+
+
+
+
+    }
+}
+
+const User = (props) => {
+    return (
+         <tr>
+         <td>{props.id}</td>
+         <td>{props.email}</td>
+          </tr>
+    )
+};
