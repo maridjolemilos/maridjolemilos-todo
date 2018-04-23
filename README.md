@@ -1,2 +1,3 @@
+-udji u code folder sa command prompt-om
 -npm install
 -npm start
