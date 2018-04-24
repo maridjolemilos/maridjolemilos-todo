@@ -273,19 +273,21 @@ render() {
        {this.state.confirm===true ?
 
        <Modal
+       className="modalApp"
        isOpen={this.state.modalIsOpen}
        ariaHideApp={false}
        contentLabel="Example Modal">
          <div className="Center">
 
-           <h1>Welcome! Click here to continue!</h1>
+           <h1>You are successfully signed in! Click here to continue!</h1>
 
              <div className="Center">
-       <button onClick={this.login}>Open list of tasks</button>
+       <button className="open-button" onClick={this.login}>Open list of tasks</button>
         </div>
          </div>
       </Modal>
       : <Modal
+         className="modal"
          isOpen={this.state.errormodalIsOpen}
          ariaHideApp={false}
          contentLabel="Example Modal">

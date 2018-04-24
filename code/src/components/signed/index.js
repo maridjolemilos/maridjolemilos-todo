@@ -139,20 +139,24 @@ render() {
                 }
 
     return(<div id="users">
-       <p>Welcome: {this.state.username}, ({this.state.email})</p>
+       <p>Welcome: <span style={{color: '#f78757'}}> {this.state.username}, ({this.state.email})</span></p>
        {this.state.owner &&
       <button onClick={this.openModal}>Edit admin list</button>}
               <Modal
+              className="modal"
               isOpen={this.state.modalIsOpen}
               ariaHideApp={false}
               contentLabel="Example Modal">
                 <div className="Center">
 
-                  <h1>edit admin list</h1>
 
-                    <div className="Center">
-              <button onClick={this.closeModal}>close list</button>
+
+                    <div >
+
+              <button  className="close-button" onClick={this.closeModal}>close list</button>
+
                <Adminlist  registered={this.state.registered}/>
+
                </div>
                 </div>
              </Modal>
@@ -210,12 +214,14 @@ class TableRow extends React.Component {
     constructor(props) {
        super(props);
        this.state = {selected:"", color: 'black', modalIsOpen: true, editConfirmed: false,
-                     id:"", title: "", completed: "", wordColor:'black'
+                     id:"", title: "", completed: "", wordColor:'black', value: ""
                      };
        this.isSelected=this.isSelected.bind(this)
        this.onEdit=this.onEdit.bind(this)
        this.closeModal=this.closeModal.bind(this)
        this.editTask=this.editTask.bind(this)
+
+       this.handleChange = this.handleChange.bind(this);
 
       }
 
@@ -238,12 +244,14 @@ onEdit(){
 editTask(e){
 e.preventDefault();
 
- if(!e.target.elements.title.value || !e.target.elements.completed.value ){
+ if(!e.target.elements.title.value || !this.state.value ){
    this.closeModal()
  }
 else {
     let title=e.target.elements.title.value;
-      let completed=e.target.elements.completed.value.toLowerCase();
+      // let completed=e.target.elements.completed.value.toLowerCase();
+      let completed = this.state.value;
+      console.log(this.state.value)
     if(completed==="true") {
     this.setState({title: title, completed: completed, wordColor:'blue'})
     this.closeModal()
@@ -270,7 +278,9 @@ this.setState({title: this.props.title, completed: this.props.completed, wordCol
 }
 
 
-
+handleChange(event) {
+     this.setState({value: event.target.value});
+   }
 
 render() {
 
@@ -291,21 +301,36 @@ render() {
 
                {this.state.editConfirmed===true &&
                  <Modal
+        className="editmodal"
        isOpen={this.state.modalIsOpen}
        ariaHideApp={false}
        contentLabel="Example Modal">
         <div className="Center">
 
 
-    <form onSubmit={this.editTask} >
+    {/* <form onSubmit={this.editTask} >
        <input type="text" placeholder="title" name="title"/>
        <input type="text" placeholder="true or false" name="completed"/>
 
 
 
        <button >Edit task</button>
-       </form>
+       </form> */}
+      <div>task id: {this.props.id}
+      <form onSubmit={this.editTask}>
+      <input type="text" placeholder="task" name="title"/>
+      <label>
 
+        <select value={this.state.value} onChange={this.handleChange}>
+          <option value="">completed</option>
+          <option value="true">yes</option>
+          <option value="false">no</option>
+
+        </select>
+      </label>
+      <input type="submit" value="Confirm" />
+     </form>
+      </div>
 
 
 
@@ -327,15 +352,45 @@ render() {
 
 
 class Adminlist extends React.Component {
+  constructor(props) {
+  super(props);
+   this.state = {registered:[], id:"", email:""}
+}
+
+componentDidMount(){
+  const database = firebase.database();
+   database.ref('registered').on('value', (snapshot) => {
+    const val = snapshot.val();
+
+
+
+
+    console.log(val)
+
+
+    const arrayUsers = [];
+    snapshot.forEach((childSnapshot) => {
+       arrayUsers.push({
+         id: childSnapshot.key,
+         ...childSnapshot.val()
+       });
+     })
+       console.log(arrayUsers)
+      this.setState({registered: arrayUsers, id:arrayUsers.id, email:arrayUsers.email});
+          // console.log(this.state.id)
+
+  })
+}
 
   render(){
     let rows=[];
-    let reg=this.props.registered;
+    let reg=this.state.registered;
     console.log(reg)
-    for (const id in reg) {
-      console.log(id)
+      for(let i = 0; i < reg.length; i++) {
+      const us = reg[i];
 
-      const tr=<User key={id} id={id}/>
+
+      const tr=<User key={us.id} id={us.id} headAdmin={us.headAdmin} email={us.email} username={us.username}/>
         rows.push(tr);
       }
   console.log(rows)
@@ -345,8 +400,10 @@ return(
   <table >
      <thead>
          <tr>
-           <th>id</th>
+             <th>username</th>
              <th>email</th>
+             <th>Admin</th>
+             <th>EditAdmin</th>
          </tr>
      </thead>
      <tbody>
@@ -363,11 +420,56 @@ return(
     }
 }
 
-const User = (props) => {
+// const User = (props) => {
+class User extends React.Component {
+  constructor(props) {
+  super(props);
+   this.state = {value:"", id:"", email:""}
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+}
+
+handleSubmit(event) {
+
+   event.preventDefault();
+   let id=this.props.id;
+   let value=this.state.value;
+   console.log(id)
+    const database = firebase.database();
+   if (this.state.value==="yes") {
+
+    database.ref('registered/'+id).update({headAdmin: value});
+        }
+    else {
+      database.ref('registered/'+id+'/headAdmin').set({});
+    }
+
+
+ }
+
+handleChange(event) {
+     this.setState({value: event.target.value});
+   }
+   render() {
     return (
          <tr>
-         <td>{props.id}</td>
-         <td>{props.email}</td>
+         <td>{this.props.username}</td>
+         <td>{this.props.email}</td>
+         <td className="center">{this.props.headAdmin}</td>
+         <td><form onSubmit={this.handleSubmit}>
+        <label>
+
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value=""></option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+
+          </select>
+        </label>
+        <input type="submit" value="Confirm" />
+      </form></td>
+
           </tr>
     )
-};
+  }
+}
