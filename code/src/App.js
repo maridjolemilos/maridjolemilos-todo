@@ -201,7 +201,8 @@ if (results) {
   const x=Math.random().toString(36).substring(7);
   const xx=JSON.stringify(x)
   console.log(xx)
-   localStorage.setItem('xnum', xx);
+  localStorage.setItem('xnum', xx);
+  const time=new Date().toLocaleString()
 
 
     const database = firebase.database();
@@ -212,6 +213,7 @@ if (results) {
       headAdmin: results.headAdmin ? true : false,
       owner: results.owner ? true : false,
       // authId: results.id,
+      timeOfLogin: time,
       x: x
 
     });
