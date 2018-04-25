@@ -6,4 +6,4 @@ FOR OPENING THIS APLICATION
 4. type "npm start"
 5. when is opened in internet browser, please test our aplication
 
-![Screenshot](app.jpg)
+![Screenshot](app.png)
