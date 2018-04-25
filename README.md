@@ -5,3 +5,5 @@ FOR OPENING THIS APLICATION
 3. type "npm install" (instaling node models)
 4. type "npm start"
 5. when is opened in internet browser, please test our aplication
+
+![Screenshot](app.jpg)
