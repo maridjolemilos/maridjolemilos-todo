@@ -112,8 +112,13 @@ if (results) {
 }
 
 componentWillUnmount(){
+  const time=new Date().toLocaleString()
   const database = firebase.database();
   database.ref(`currentUser/${this.state.id}`).set({ });
+
+  database.ref(`history/${this.state.fire}`).update({
+  timeOfLogout: time
+  });
 
 }
 
@@ -152,9 +157,9 @@ render() {
 
 
                     <div >
-
+              <div className="Center">
               <button  className="close-button" onClick={this.closeModal}>close list</button>
-
+              </div>
                <Adminlist  registered={this.state.registered}/>
 
                </div>
@@ -400,10 +405,10 @@ return(
   <table >
      <thead>
          <tr>
-             <th>username</th>
-             <th>email</th>
+             <th>Username</th>
+             <th>Email</th>
              <th>Admin</th>
-             <th>EditAdmin</th>
+             <th>Edit Admin</th>
          </tr>
      </thead>
      <tbody>
@@ -440,7 +445,7 @@ handleSubmit(event) {
 
     database.ref('registered/'+id).update({headAdmin: value});
         }
-    else {
+    else if (this.state.value==="no") {
       database.ref('registered/'+id+'/headAdmin').set({});
     }
 

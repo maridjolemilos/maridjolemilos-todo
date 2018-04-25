@@ -1,8 +1,9 @@
 import React from 'react';
+import './index.css';
 
 const Button = (props) => {
     return (
-         <button>Confirm</button>
+         <button id="ton">Confirm</button>
     )
 };
 

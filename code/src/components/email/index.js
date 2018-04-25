@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 
 class Email extends React.Component {
     constructor(props) {
@@ -8,7 +9,7 @@ class Email extends React.Component {
 
 render() {
       return(
-      <div><input type="email" placeholder="email" name="email" onChange={this.onEmailChange}/> </div>);
+      <div><input type="email" placeholder="Enter Email" name="email" onChange={this.onEmailChange}/> </div>);
       }
 }
 

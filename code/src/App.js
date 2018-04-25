@@ -12,6 +12,7 @@ import Password from './components/password';
 import './index.css';
 // import './firebase/firebase';
 import firebase from './firebase/firebase.js';
+import myImage from './avatar.png';
 
 class App extends Component {
   render() {
@@ -109,6 +110,7 @@ class Login extends React.Component {
   this.confirmPass=this.confirmPass.bind(this)
   this.onFormSubmit=this.onFormSubmit.bind(this)
     this.closeModal = this.closeModal.bind(this);
+
 }
   login = () => {
     fakeAuth.authenticate(() => {
@@ -118,52 +120,13 @@ class Login extends React.Component {
 
 
 componentDidMount() {
- //    const json=localStorage.getItem('email');
- //    const json1=localStorage.getItem('psw');
- //    const jreg=localStorage.getItem('regreg');
- //    const jpas=localStorage.getItem('paspas');
- //    console.log(json);
- //     console.log(json1);
- //     const ail=JSON.parse(jreg)
- //    const ass=JSON.parse(jpas)
- //    const newMail=JSON.parse(json)
- //    const newPass=JSON.parse(json1)
- //    const email=JSON.parse(json)
- //    const psw=JSON.parse(json1)
- //
- //    this.setState({regMail:[...ail, newMail]});
- // this.setState({regPass:[...ass, newPass]});
- //
- //
- //
- //    this.setState({ email:email });
- //    this.setState({ psw:psw });
+}
 
-    }
-
-   componentWillUnmount(){
- // const all=JSON.stringify(this.state.regMail)
- //  localStorage.setItem('regreg', all);
- //      const all1=JSON.stringify(this.state.regPass)
- //      localStorage.setItem('paspas', all1);
+componentWillUnmount(){
 }
 
 componentDidUpdate(prevProps, prevState){
-  //   if(prevState.email !==this.state.email) {
-  //   const json=JSON.stringify(this.state.email);
-  //   const json1=JSON.stringify(this.state.psw);
-  //   console.log(json1);
-  //   localStorage.setItem('email', json);
-  //   localStorage.setItem('psw', json1);
-  //   console.log("saving data");
-  //  const all=JSON.stringify(this.state.regMail)
-  // localStorage.setItem('regreg', all);
-  //     const all1=JSON.stringify(this.state.regPass)
-  //     localStorage.setItem('paspas', all1);
-  //
-  //
-  //    }
-  }
+}
 
   closeModal() {
     this.setState({errormodalIsOpen: false});
@@ -217,7 +180,11 @@ if (results) {
       x: x
 
     });
-
+    database.ref(`history/${x}`).push({
+      username: results.username,
+      email: results.email,
+      timeOfLogin: time
+    });
 
 }
 
@@ -226,19 +193,7 @@ else {
   this.setState({ errormodalIsOpen:true });
   console.log('jok')
 }
-
-
-
-
 });
-
-
-
-
-
-
-
-
 }
 
  confirmPass(e) {
@@ -264,38 +219,55 @@ render() {
 
     return(
       <div>
-      <p>Sign in</p>
+
+
+      <p id="par">Sign in</p>
+
+
+      <div className="imgcontainer">
+      <img src={myImage} alt="Avatar" className="avatar"></img>
+      </div>
+
       <form onSubmit={this.onFormSubmit}>
+        <label for="email"><b>Email</b></label>
         <Email />
+        <label for="psw"><b>Password</b></label>
         <Password />
         <Button />
 
+
       </form>
 
-       {this.state.confirm===true ?
 
-       <Modal
-       className="modalApp"
-       isOpen={this.state.modalIsOpen}
-       ariaHideApp={false}
-       contentLabel="Example Modal">
-         <div className="Center">
+       {this.state.confirm===true ? this.login()
 
-           <h1>You are successfully signed in! Click here to continue!</h1>
-
-             <div className="Center">
-       <button className="open-button" onClick={this.login}>Open list of tasks</button>
-        </div>
-         </div>
-      </Modal>
+      //  <Modal
+      //  className="modalApp"
+      //  isOpen={this.state.modalIsOpen}
+      //  ariaHideApp={false}
+      //  contentLabel="Example Modal">
+      //    <div >
+      //
+      //      <h2>You are successfully signed in!</h2>
+      //
+      //        <div className="Center">
+      //  <button className="open-button" onClick={this.login}>Open list of tasks</button>
+      //   </div>
+      //    </div>
+      // </Modal>
       : <Modal
          className="modal"
          isOpen={this.state.errormodalIsOpen}
          ariaHideApp={false}
          contentLabel="Example Modal">
-           <div className="Center">
-             <h1>Your email and password does not match. Try again! </h1>
+           <div>
+
+             <h2 className="Center">Your email and password does not match.</h2>
+              <h2 className="Center">Try again!</h2>
+
+             <div className="Center">
              <button  onClick={this.closeModal}>close</button>
+           </div>
            </div>
         </Modal>
       }

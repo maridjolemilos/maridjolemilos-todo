@@ -5,11 +5,13 @@ import Button from '../button';
 import Password from '../password';
 import Modal from 'react-modal';
 import firebase from '../../firebase/firebase';
+import './index.css';
+import myImage from '../../avatar.png';
 
 
 const Signup = (props) => {
        return (
-          <div id="main">   <Main1/></div>
+          <div id="main1">   <Main1/></div>
         )
   };
 
@@ -53,7 +55,7 @@ onFormSubmit(e) {
      //  )
      // .then(
      //    myJson => {
-     //        console.log(myJson)
+     //        console.log(myJson, "ppppp")
      //        this.setState({ user:myJson });
      //        if (myJson.hostExists===false ) {
      //        this.setState({ errormodalIsOpen:true });
@@ -90,27 +92,39 @@ onFormSubmit(e) {
 
      return(
        <div>
-          <p>Create your Back Office Account</p>
-          <p>Fill in the appropriate fields to register</p>
+          <p id="par">Create your Back Office Account</p>
+          {/* <p>Fill in the appropriate fields to register</p> */}
+          <div className="imgcontainer">
+          <img src={myImage} alt="Avatar" className="avatar"></img>
+          </div>
+
        <form onSubmit={this.onFormSubmit}>
-       <input type="text" placeholder="username" pattern=".{8,}" name="username"/>
+        <label for="username"><b>Username</b></label>
+       <input id="inp" type="text" placeholder="Enter Username" pattern=".{8,}" name="username"/>
+          <label for="email"><b>Email</b></label>
           <Email />
+          <label for="psw"><b>Password</b></label>
           <Password />
           <Button />
        </form>
        {this.state.hostExists  && this.state.psw && this.state.username ?
 
       <Modal
+      className="modalApp"
       isOpen={this.state.modalIsOpen}
       ariaHideApp={false}
       contentLabel="Example Modal">
 
-        <div className="Center">
-          <h1>Welcome: {this.state.username}! You are registered now!<Link to="/" >Sign in to continue</Link></h1>
+        <div >
+          <h1 className="Center">Welcome: {this.state.username}! You are registered now!</h1>
+            <div className="Center">
+          <h1><Link to="/" >Sign in to continue</Link></h1>
+              </div>
         </div>
       </Modal>
 
       : <Modal
+        className="modalApp"
         isOpen={this.state.errormodalIsOpen}
         ariaHideApp={false}
         contentLabel="Example Modal">
