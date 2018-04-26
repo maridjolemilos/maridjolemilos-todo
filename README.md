@@ -7,9 +7,3 @@ FOR OPENING THIS APLICATION
 5. when is opened in internet browser, please test our aplication
 
 ![Screenshot](Screenshot.png)
-![snapshoot - admin edit task](snapshoot - admin edit task.png)
-![Screenshot](snapshoot - admin page.png)
-![Screenshot](snapshoot - owner add admin.png)
-![Screenshot](snapshoot - sign up.png)
-![Screenshot](snapshoot - user page.png)
-![Screenshot](snapshoot - welcome page.png)
