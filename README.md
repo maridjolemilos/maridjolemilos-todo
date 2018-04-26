@@ -6,9 +6,9 @@ FOR OPENING THIS APLICATION
 2. open the project directory with command prompt
 
 3. run `npm install` 
-#### `npm install` 
+#### `npm install` - Installing node modules
 
-(instaling node modules)
+
 
 4. run `npm start`
 #### `npm start`
