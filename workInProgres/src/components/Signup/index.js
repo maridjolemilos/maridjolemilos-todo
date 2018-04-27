@@ -5,7 +5,7 @@ import Button from '../button';
 import Password from '../password';
 import Modal from 'react-modal';
 import firebase from '../../firebase/firebase';
-import './index.css';
+import './style.css';
 import myImage from '../../avatar.png';
 
 
