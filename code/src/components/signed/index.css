@@ -1,6 +1,13 @@
-#tab {
+.tab {
     width: 100%;
     text-align: center;
+}
+.completed{
+  width: 100%;
+  text-align: center;
+}
+#posleft{
+  text-align: left;
 }
 thead {
         background-color: black;
@@ -40,27 +47,30 @@ input:focus {
   transform: translate(-50%, -50%);
    background-color: papayawhip;
    border: 1px solid black;
-   width: 400px;
+   width: 600px;
    height: 60px;
 }
-/* button {
-  margin-right: 0px;
-} */
 
-/* .close-button {
+.detailsModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+   background-color: papayawhip;
+   border: 1px solid black;
+   width: 600px;
+   height: 200px;
+}
 
-  z-index: 1;
-  top: 10px;
-  right: 20px;
-  border: 0;
-  background: black;
-  color: white;
-  padding: 5px 10px;
-  font-size: 1.3rem;
-} */
+
+
 .center {
   text-align: center;
 }
 #users{
   background-color: papayawhip;
+}
+#deltasks{
+  
+  float: right;
 }

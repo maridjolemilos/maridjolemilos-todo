@@ -1,9 +1,10 @@
 import React from 'react';
+import './index.css';
 
 
 const Header = (props) => {
     return (
-      <div>BACK OFFICE</div>
+      <div id="head">TO-DO app</div>
     )
 };
 
