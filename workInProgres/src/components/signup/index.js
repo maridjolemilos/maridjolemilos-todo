@@ -24,14 +24,6 @@ class Main1 extends React.Component {
     }
 
 componentDidUpdate(prevProps, prevState){
-     //  if(this.state.hostExists===true) {
-     //  const json=JSON.stringify(this.state.email);
-     //   const json1=JSON.stringify(this.state.psw);
-     //  localStorage.setItem('email', json);
-     //   localStorage.setItem('psw', json1);
-     //  console.log("saving data");
-     // }
-
     }
 
 closeModal() {
