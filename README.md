@@ -1,4 +1,4 @@
-FOR OPENING THIS APLICATION
+### FOR OPENING THIS APLICATION
 
 1. clone it in the project directory
 #### `git-clone` - Clone a repository into a new directory
