@@ -21,16 +21,21 @@ You will also see any lint errors in the console.
 
 
 
-![Screenshot](Screenshot.png)
 
+#### `signin page`
 ![Screenshot](signin.png)
 
+#### `signup page`
 ![Screenshot](signup.png)
 
+#### `todo list page`
 ![Screenshot](todolist.png)
 
+#### `admin list page`
 ![Screenshot](adminlist.png)
 
+#### `details page`
 ![Screenshot](details.png)
 
+#### `edit task page`
 ![Screenshot](edittask.png)
