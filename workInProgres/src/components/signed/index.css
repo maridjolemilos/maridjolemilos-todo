@@ -63,17 +63,7 @@ input:focus {
 }
 
 
-/* .close-button {
 
-  z-index: 1;
-  top: 10px;
-  right: 20px;
-  border: 0;
-  background: black;
-  color: white;
-  padding: 5px 10px;
-  font-size: 1.3rem;
-} */
 .center {
   text-align: center;
 }
@@ -81,6 +71,6 @@ input:focus {
   background-color: papayawhip;
 }
 #deltasks{
-  /* text-align: center; */
+  
   float: right;
 }
