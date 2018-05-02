@@ -206,30 +206,6 @@ componentWillUnmount(){
 
 }
 
-// componentWillUpdate(nextProps, nextState) {
-//
-//   const database = firebase.database();
-//
-//   database.ref('todo/-LB4nLNya2o0Dw1wZRm5').on('value', (snapshot) => {
-//   // const val = snapshot.val();
-//   const arrayU = [];
-//   snapshot.forEach((childSnapshot) => {
-//      arrayU.push({
-//        id: childSnapshot.key,
-//        ...childSnapshot.val()
-//      });
-//    })
-//   console.log(arrayU, "FIRE")
-// if(this.state.user !==arrayU) {
-//
-//
-//    this.setState({ user:arrayU });
-//     }
-//     })
-//
-// }
-
-
 
 openModal() {
   this.setState({ modalIsOpen:true });
@@ -256,7 +232,7 @@ render() {
                     const us = this.state.user[i];
                     const tr = <TableRow key={us.id} id={us.id} title={us.title}
                      completed={JSON.stringify(us.completed)}
-                     // completed={us.completed}
+                    
                      assignee={us.assignee}
                      email={this.state.email}
                      headAdmin={this.state.headAdmin} registered={this.state.registered} />
@@ -341,7 +317,7 @@ render() {
        <br/>
        <form onSubmit={this.onAdd} >
        <input type="text" placeholder="title" name="title"/>
-       {/* <input type="text" placeholder="completed" name="completed"/> */}
+     
 
 
        <label>
