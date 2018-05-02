@@ -33,13 +33,9 @@ onDelete(e) {
 
     let num1=num-1;
     console.log(num1);
-    // let ar=this.state.user.length;
-    // let index=array[num1].id;
-    // console.log(index, 'jaaaaaa');
-    // array.splice(num1,1);
+   
     console.log(array);
-    // this.setState({user: array});
-    // console.log(this.state.user)
+   
     e.target.elements.num.value="";
 
 
@@ -50,8 +46,7 @@ onDelete(e) {
 
     const result = array.find( obj => obj.id == num);
     console.log(result);
-    // this.setState({deleted: result});
-
+  
 
 
 
