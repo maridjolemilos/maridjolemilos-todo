@@ -435,9 +435,7 @@ e.preventDefault();
 else {
 
     let title=e.target.elements.title.value;
-      // let completed=e.target.elements.completed.value.toLowerCase();
-      // let complet = this.state.value;
-      // let completed=JSON.parse(complet);
+     
       let completed=this.state.value;
       console.log(this.state.value)
 
@@ -513,7 +511,7 @@ onDetails() {
 
   console.log(results)
   this.setState({details: results});
-  // console.log(results.username)
+ 
 }
 }
 
