@@ -22,3 +22,15 @@ You will also see any lint errors in the console.
 
 
 ![Screenshot](Screenshot.png)
+
+![Screenshot](signin.png)
+
+![Screenshot](signup.png)
+
+![Screenshot](todolist.png)
+
+![Screenshot](adminlist.png)
+
+![Screenshot](details.png)
+
+![Screenshot](edittask.png)
