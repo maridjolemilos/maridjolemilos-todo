@@ -112,41 +112,11 @@ componentWillMount() {
 
      }
 componentDidMount() {
-
-
-
-
-
-
-    // fetch('https://jsonplaceholder.typicode.com/todos')
-    // .then(
-    //     response => response.json()
-    // )
-    // .then(
-    //     myJson => {
-    //         console.log(myJson)
-    //  let js=myJson;
-    //
-    //  this.setState({ user:js });
-    //  let fb=js.slice(0,20);
-    //  const database = firebase.database();
-    //  database.ref(`todo`).push(
-    //    fb
-    //  );
-    //
-    //     }
-    // )
-    // .catch(
-    //     error => console.error(error)
-    // );
-
-
-
-
+  
   const database = firebase.database();
 
   database.ref('todo/-LBEn_DgH_hZwz_MJR3C').on('value', (snapshot) => {
-  // const val = snapshot.val();
+  
   const arrayU = [];
   snapshot.forEach((childSnapshot) => {
      arrayU.push({
@@ -163,7 +133,7 @@ componentDidMount() {
 
 
 database.ref('currentUser').on('value', (snapshot) => {
-// const val = snapshot.val();
+
 const arrayUsers = [];
 snapshot.forEach((childSnapshot) => {
    arrayUsers.push({
@@ -192,7 +162,7 @@ if (results) {
 
 
 database.ref('registered').on('value', (snapshot) => {
-// const val = snapshot.val();
+
 const array = [];
 snapshot.forEach((childSnapshot) => {
    array.push({
@@ -208,7 +178,7 @@ console.log(this.state.registered, "tu sam opet")
 
 
 database.ref('todo/deleted').on('value', (snapshot) => {
-// const val = snapshot.val();
+
 const arrayD = [];
 snapshot.forEach((childSnapshot) => {
    arrayD.push({
