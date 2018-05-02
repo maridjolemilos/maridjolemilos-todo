@@ -10,7 +10,7 @@ import Email from './components/email';
 import Button from './components/button';
 import Password from './components/password';
 import './index.css';
-// import './firebase/firebase';
+
 import firebase from './firebase/firebase.js';
 import myImage from './avatar.png';
 
@@ -35,7 +35,7 @@ class App extends Component {
 
                    <PrivateRoute path="/signed" component={Signed} />
                    </Switch>
-                       {/* <div id="main">   <Main/></div><br />*/}
+                     
                    <div id="ff">   <Footer /> </div>
 
                 </div>
