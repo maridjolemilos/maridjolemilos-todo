@@ -39,10 +39,7 @@ onDelete(e) {
     e.target.elements.num.value="";
 
 
-    // console.log(maxValue)
-    // this.setState({ maxId: maxValue });
-    // console.log(this.state.maxId, 'IDIDID')
-
+   
 
     const result = array.find( obj => obj.id == num);
     console.log(result);
@@ -81,13 +78,11 @@ onAdd(e) {
     let title=e.target.elements.title.value;
     let completed=JSON.parse(this.state.value);
     let array = this.state.user;
-    // let newelement={ title:title, completed:completed }
+   
 let id=this.state.user.length;
 
-    // this.setState({user:[...array, newelement]});
-   /*console.log(this.state.user)*/
     e.target.elements.title.value="";
-    // e.target.elements.completed.value="";
+   
     const maxValue = Math.max(...array.map(o => o.id));
 
 
