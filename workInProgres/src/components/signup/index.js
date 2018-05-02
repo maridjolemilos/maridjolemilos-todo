@@ -39,28 +39,7 @@ onFormSubmit(e) {
       console.log(pass);
       let username=e.target.elements.username.value;
       this.setState({ psw:pass, username:username });
-       // this.setState({ hostExists:true });
-
-     // fetch(`https://cors-anywhere.herokuapp.com/https://api.trumail.io/v1/{format}/${email}`)
-     // .then(
-     //    response => response.json()
-     //  )
-     // .then(
-     //    myJson => {
-     //        console.log(myJson, "ppppp")
-     //        this.setState({ user:myJson });
-     //        if (myJson.hostExists===false ) {
-     //        this.setState({ errormodalIsOpen:true });
-     //          }
-     //         this.setState({ hostExists:true });
-     //
-     //            console.log(this.state.hostExists)
-     //            console.log(this.state.psw)
-     //    }
-     //  )
-     //  .catch(
-     //    error => console.error(error)
-     //  );
+     
    if (/\S+@\S+\.\S+/.test(email))
    {  this.setState({ hostExists:true });}
 
