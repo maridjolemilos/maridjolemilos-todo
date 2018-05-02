@@ -18,24 +18,25 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
+-------------------------------------------------
 
 
 
 
-#### `signin page`
+### `signin page`
 ![Screenshot](signin.png)
 
-#### `signup page`
+### `signup page`
 ![Screenshot](signup.png)
 
-#### `todo list page`
+### `todo list page`
 ![Screenshot](todolist.png)
 
-#### `admin list page`
+### `admin list page`
 ![Screenshot](adminlist.png)
 
-#### `details page`
+### `details page`
 ![Screenshot](details.png)
 
-#### `edit task page`
+### `edit task page`
 ![Screenshot](edittask.png)
