@@ -24,13 +24,13 @@
  
  
  
- ### `signin page`
+ ### `sign in page`
  ![Screenshot](signin.png)
  
- ### `signup page`
+ ### `sign up page`
  ![Screenshot](signup.png)
 
- ### `todo list page`
+ ### `to do list page`
  ![Screenshot](todolist.png)
  
  ### `firebase database`
