@@ -1,9 +1,10 @@
 import React from 'react';
+import './index.css';
 
 
 const Header = (props) => {
     return (
-      <div>MDJM TASK LIST</div>
+      <div id="head">TO-DO app</div>
     )
 };
 
