@@ -10,7 +10,7 @@ import Email from './components/email';
 import Button from './components/button';
 import Password from './components/password';
 import './index.css';
-// import './firebase/firebase';
+
 import firebase from './firebase/firebase.js';
 import myImage from './avatar.png';
 
@@ -241,20 +241,7 @@ render() {
 
        {this.state.confirm===true ? this.login()
 
-      //  <Modal
-      //  className="modalApp"
-      //  isOpen={this.state.modalIsOpen}
-      //  ariaHideApp={false}
-      //  contentLabel="Example Modal">
-      //    <div >
-      //
-      //      <h2>You are successfully signed in!</h2>
-      //
-      //        <div className="Center">
-      //  <button className="open-button" onClick={this.login}>Open list of tasks</button>
-      //   </div>
-      //    </div>
-      // </Modal>
+   
       : <Modal
          className="modal"
          isOpen={this.state.errormodalIsOpen}
