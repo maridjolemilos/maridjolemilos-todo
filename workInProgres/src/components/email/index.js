@@ -7,7 +7,6 @@ class Email extends React.Component {
     this.state = {user: []};
     }
 
-
 render() {
       return(
       <div><input type="email" placeholder="Enter Email" name="email" onChange={this.onEmailChange}/> </div>);
