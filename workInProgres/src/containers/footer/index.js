@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = (props) => {
     return (
-        <div>FOOTER</div>
+        <div>Created by-MDJM team, PZORG 2018</div>
     )
 };
 
