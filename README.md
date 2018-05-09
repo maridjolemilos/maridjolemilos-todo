@@ -20,9 +20,9 @@
  You will also see any lint errors in the console.
   
 
-#### You can test this aplication at http://mixyznik-todoproj.surge.sh/
+#### You can test this aplication at: http://mixyznik-todoproj.surge.sh/
   
-  
+#### Or at: https://to-do-pro.herokuapp.com/  
  
  
  
